@@ -1,0 +1,27 @@
+{
+  "name": "ecell-inductions",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "source": "src/index.html",
+  "scripts": {
+    "dev": "parcel",
+    "build": "parcel build",
+    "pages": "node publish.js"
+  },
+  "keywords": [],
+  "author": "TheComputerM",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.20.7",
+    "babel-preset-solid": "^1.6.6",
+    "gh-pages": "^4.0.0",
+    "parcel": "^2.8.2",
+    "solid-js": "^1.6.6"
+  },
+  "dependencies": {
+    "@hope-ui/core": "1.0.0-next.11",
+    "@stitches/core": "^1.2.8",
+    "clsx": "^1.2.1"
+  }
+}
