@@ -9,6 +9,12 @@
     "build": "parcel build",
     "pages": "node publish.js"
   },
+  "targets": {
+    "default": {
+      "context": "browser",
+      "publicUrl": "/ecell-inductions"
+    }
+  },
   "keywords": [],
   "author": "TheComputerM",
   "license": "MIT",
@@ -22,6 +28,7 @@
   "dependencies": {
     "@hope-ui/core": "1.0.0-next.11",
     "@stitches/core": "^1.2.8",
-    "clsx": "^1.2.1"
+    "clsx": "^1.2.1",
+    "solid-icons": "^1.0.4"
   }
 }

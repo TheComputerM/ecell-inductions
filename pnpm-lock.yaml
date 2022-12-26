@@ -8,12 +8,14 @@ specifiers:
   clsx: ^1.2.1
   gh-pages: ^4.0.0
   parcel: ^2.8.2
+  solid-icons: ^1.0.4
   solid-js: ^1.6.6
 
 dependencies:
   '@hope-ui/core': 1.0.0-next.11_eo7mhxf7bkphudiliukpjlqfym
   '@stitches/core': 1.2.8
   clsx: 1.2.1
+  solid-icons: 1.0.4_solid-js@1.6.6
 
 devDependencies:
   '@babel/core': 7.20.7
@@ -2138,6 +2140,15 @@ packages:
     resolution: {integrity: sha512-b39TBaTSfV6yBrapU89p5fKekE2m/NwnDocOVruQFS1/veMgdzuPcnOM34M6CwxW8jH/lxEa5rBoDeUwu5HHTw==}
     hasBin: true
     dev: true
+
+  /solid-icons/1.0.4_solid-js@1.6.6:
+    resolution: {integrity: sha512-gJTp4in3+OYCs9WvDkSLt4Los2unR3Uoder8wjh15GsfP20xiNOLfPTJllXmn+fI8+k3x7bRYtLGIgWd9fUQug==}
+    engines: {node: '>= 16'}
+    peerDependencies:
+      solid-js: '*'
+    dependencies:
+      solid-js: 1.6.6
+    dev: false
 
   /solid-js/1.6.6:
     resolution: {integrity: sha512-5x33mEbPI8QLuywvFjQP4krjWDr8xiYFgZx9KCBH7b0ZzypQCHaUubob7bK6i+1u6nhaAqhWtvXS587Kb8DShA==}

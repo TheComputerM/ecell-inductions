@@ -8,7 +8,12 @@ import {
   Container,
   Heading,
   Divider,
+  extendTheme,
+  IconButton,
+  Icon,
+  useColorMode,
 } from "@hope-ui/core";
+import { FaRegularMoon, FaRegularSun } from "solid-icons/fa";
 import {
   Component,
   createResource,
@@ -45,11 +50,10 @@ const AssetCard: Component<{
     <Box
       padding={3}
       rounded="md"
-      border={({ vars }) => `1px solid ${vars.colors.neutral["200"]}`}
+      border={({ vars }) => `2px solid ${vars.colors.neutral["200"]}`}
       boxShadow="md"
       _dark={{
-        borderColor: "neutral.800",
-        bg: "neutral.900",
+        borderColor: "neutral.700",
       }}
     >
       <Box display="flex" justifyContent="space-between" alignItems="center">
@@ -62,8 +66,12 @@ const AssetCard: Component<{
           px={2}
           py={1}
           rounded="full"
-          bgColor="info.900"
-          color="info.300"
+          bgColor="info.100"
+          color="info.600"
+          _dark={{
+            bgColor: "info.900",
+            color: "info.300"
+          }}
         >
           <Text
             as="span"
@@ -77,9 +85,9 @@ const AssetCard: Component<{
       </Box>
       <Box color="neutral.400">
         <Text as="span" size="lg">
-          {parseFloat(props.asset.priceUsd)}
+          {props.asset.priceUsd}
         </Text>
-        <Text as="span" ml={1} size="xs" fontWeight="semibold">
+        <Text as="span" ml={1} size="xs" fontWeight="bold">
           USD
         </Text>
       </Box>
@@ -98,6 +106,7 @@ const AssetCard: Component<{
         colorScheme={props.selected ? "success" : "info"}
         variant={props.selected ? "soft" : "outlined"}
         size="sm"
+        cursor="pointer"
         onClick={props.onSelect}
       >
         {props.selected ? "Selected" : "Select"}
@@ -142,9 +151,12 @@ const AvailableAssetList: Component = () => {
           <Box
             display="grid"
             height={175}
-            border={({ vars }) => `4px dashed ${vars.colors.neutral["800"]}`}
+            border={({ vars }) => `4px dashed ${vars.colors.neutral["200"]}`}
             rounded="sm"
             placeContent="center"
+            _dark={{
+              borderColor: "neutral.800"
+            }}
           >
             <Heading color="neutral.400" level="2" size="2xl">
               No Assets Selected
@@ -153,7 +165,7 @@ const AvailableAssetList: Component = () => {
         }
       >
         <Suspense fallback={<h1>Loading</h1>}>
-          <Grid templateColumns="repeat(auto-fit, minmax(275px, 1fr))" gap={6}>
+          <Grid templateColumns="repeat(auto-fit, minmax(300px, 1fr))" gap={6}>
             <For
               each={assets()?.data.filter(({ id }) =>
                 selectedAssets().includes(id)
@@ -178,7 +190,7 @@ const AvailableAssetList: Component = () => {
       </Heading>
       <br />
       <Suspense fallback={<h1>Loading</h1>}>
-        <Grid templateColumns="repeat(auto-fit, minmax(275px, 1fr))" gap={6}>
+        <Grid templateColumns="repeat(auto-fit, minmax(300px, 1fr))" gap={6}>
           <For each={assets()?.data}>
             {(asset) => (
               <AssetCard
@@ -194,13 +206,42 @@ const AvailableAssetList: Component = () => {
   );
 };
 
-const App: Component = () => <AvailableAssetList />;
+const App: Component = () => {
+  const { colorMode, toggleColorMode } = useColorMode();
+  return (
+    <>
+      <Box
+        display="flex"
+        alignItems="center"
+        m={6}
+        py={2}
+        px={4}
+        rounded="xl"
+        backgroundColor="neutral.100"
+        _dark={{ backgroundColor: "neutral.800" }}
+      >
+        <Heading level={1} size="xl">ECell mai lelo</Heading>
+        <div style={{ "flex-grow": 1 }}></div>
+        <IconButton onClick={toggleColorMode} aria-label="Switch Theme">
+          <Icon as={colorMode() === "light" ? FaRegularMoon : FaRegularSun} />
+        </IconButton>
+      </Box>
+      <AvailableAssetList />
+    </>
+  );
+};
 
 const Page: Component = () => {
   return (
     <>
       <ColorModeScript />
-      <HopeProvider>
+      <HopeProvider
+        theme={extendTheme({
+          fonts: {
+            sans: "Inter, 'Segoe UI', Roboto, sans-serif",
+          },
+        })}
+      >
         <App />
       </HopeProvider>
     </>
